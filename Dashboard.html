@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FitCampus AI | Smart Fitness Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =====================================================
+   FITCAMPUS AI - PREMIUM DASHBOARD
+===================================================== */
+
+:root{
+    --green:#16834b;
+    --green2:#35b875;
+    --dark:#10251b;
+    --bg:#f4f8f6;
+    --white:#ffffff;
+    --text:#18251f;
+    --muted:#68756e;
+    --orange:#f39c12;
+    --red:#e74c3c;
+    --blue:#2878d0;
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+button{
+    cursor:pointer;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:16px 6%;
+
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:var(--green);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+}
+
+.nav-links button{
+    border:none;
+    background:var(--green);
+    color:white;
+    padding:10px 18px;
+    border-radius:8px;
+}
+
+/* ================= MAIN ================= */
+
+.dashboard{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+    padding:30px 0 60px;
+}
+
+/* ================= HERO ================= */
+
+.hero-dashboard{
+
+    min-height:330px;
+
+    border-radius:28px;
+
+    padding:35px;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:30px;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(5,45,27,.95),
+        rgba(22,131,75,.55)
+    ),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=85&w=1600&auto=format&fit=crop");
+
+    background-size:cover;
+    background-position:center;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:28px;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.hero-content h1{
+    font-size:46px;
+    margin:0 0 12px;
+}
+
+.hero-content p{
+    font-size:18px;
+    line-height:1.6;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:30px;
+    background:rgba(255,255,255,.18);
+    margin-bottom:15px;
+}
+
+.hero-btn{
+    background:white;
+    color:var(--green);
+    border:none;
+    padding:13px 22px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+/* ================= PHOTO GALLERY ================= */
+
+.photo-gallery{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+    margin-bottom:30px;
+}
+
+.photo-card{
+    height:145px;
+    border-radius:15px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:var(--shadow);
+}
+
+.photo-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.photo-card:hover img{
+    transform:scale(1.08);
+}
+
+.photo-label{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+
+    padding:8px;
+
+    color:white;
+    font-weight:bold;
+
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.75)
+    );
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    background:white;
+    padding:28px;
+    border-radius:20px;
+    margin-bottom:25px;
+    box-shadow:var(--shadow);
+}
+
+.section h2{
+    margin-top:0;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:28px;
+}
+
+.stat{
+    background:white;
+    padding:22px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    text-align:center;
+    transition:.25s;
+}
+
+.stat:hover{
+    transform:translateY(-5px);
+}
+
+.stat-icon{
+    font-size:34px;
+}
+
+.stat h3{
+    margin:8px 0;
+}
+
+.stat-number{
+    font-size:32px;
+    font-weight:bold;
+    color:var(--green);
+}
+
+/* ================= INPUTS ================= */
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    margin:7px 0;
+
+    border:1px solid #dce4df;
+    border-radius:9px;
+
+    font-size:15px;
+}
+
+.action-btn{
+    border:none;
+    padding:12px 18px;
+    border-radius:9px;
+    background:var(--green);
+    color:white;
+    font-weight:bold;
+}
+
+.secondary-btn{
+    border:none;
+    padding:12px 18px;
+    border-radius:9px;
+    background:#edf5f0;
+    color:var(--green);
+    font-weight:bold;
+}
+
+/* ================= AI COACH ================= */
+
+.ai-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        #e9fff2,
+        #eef8ff
+    );
+
+    border:2px solid #d9f2e3;
+
+    padding:25px;
+
+    border-radius:18px;
+}
+
+.ai-answer{
+
+    margin-top:18px;
+
+    padding:18px;
+
+    background:white;
+
+    border-radius:14px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+    line-height:1.7;
+}
+
+/* ================= GRID ================= */
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-item{
+    margin:18px 0;
+}
+
+.progress-head{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
+}
+
+.progress-bar{
+    width:100%;
+    height:13px;
+    background:#e4e9e6;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        var(--green),
+        var(--green2)
+    );
+    transition:.5s;
+}
+
+/* ================= GOALS ================= */
+
+.goal-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.goal-card{
+    padding:20px;
+    background:#f8faf9;
+    border-radius:15px;
+    border:1px solid #e4ebe7;
+}
+
+.goal-card h3{
+    margin-top:0;
+}
+
+/* ================= CALORIE ================= */
+
+.calorie-result{
+    background:#fff8e7;
+    border-left:5px solid var(--orange);
+    padding:18px;
+    border-radius:12px;
+    margin-top:15px;
+}
+
+.calorie-number{
+    font-size:35px;
+    font-weight:bold;
+    color:var(--orange);
+}
+
+/* ================= FOOD ================= */
+
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.food-card{
+    overflow:hidden;
+    background:white;
+    border-radius:16px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.food-card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+}
+
+.food-content{
+    padding:18px;
+}
+
+.food-content h3{
+    margin-top:0;
+}
+
+/* ================= CHART ================= */
+
+.chart-box{
+    width:100%;
+    overflow:hidden;
+}
+
+canvas{
+    width:100%;
+    max-width:100%;
+    height:260px;
+    background:#fbfdfc;
+    border-radius:15px;
+}
+
+/* ================= TIMER ================= */
+
+.timer-box{
+    text-align:center;
+    padding:25px;
+    background:linear-gradient(
+        135deg,
+        #10251b,
+        #16834b
+    );
+    color:white;
+    border-radius:20px;
+}
+
+.timer{
+    font-size:70px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.timer-box button{
+    border:none;
+    padding:12px 18px;
+    border-radius:9px;
+    margin:4px;
+}
+
+/* ================= BMI ================= */
+
+.bmi-result{
+    margin-top:15px;
+    padding:18px;
+    border-radius:12px;
+    background:#eef7ff;
+}
+
+/* ================= REMINDERS ================= */
+
+.reminder-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.reminder-card{
+    background:#f7faf8;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
+}
+
+/* ================= ACHIEVEMENT ================= */
+
+.badges{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.badge{
+    text-align:center;
+    padding:20px;
+    background:#f7faf8;
+    border-radius:15px;
+}
+
+.badge-icon{
+    font-size:42px;
+}
+
+/* ================= FOOD NOTE ================= */
+
+.health-note{
+    background:#fff5f3;
+    border-left:5px solid var(--red);
+    padding:15px;
+    border-radius:10px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .photo-gallery{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .goal-grid,
+    .food-grid,
+    .reminder-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .dashboard{
+        width:94%;
+        padding-top:15px;
+    }
+
+    .hero-dashboard{
+        padding:25px 20px;
+        min-height:300px;
+    }
+
+    .hero-content h1{
+        font-size:32px;
+    }
+
+    .photo-gallery{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .photo-card{
+        height:130px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .goal-grid,
+    .food-grid,
+    .reminder-grid,
+    .badges{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:20px;
+    }
+
+    .timer{
+        font-size:55px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+        💚 FitCampus AI
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main class="dashboard">
+
+
+<!-- =================================================
+     HERO
+================================================= -->
+
+<section class="hero-dashboard">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            🤖 AI Powered Student Fitness
+        </span>
+
+        <h1>
+            Welcome Back! 👋
+        </h1>
+
+        <p>
+            Your personal campus fitness assistant.
+            Track activity, manage goals, burn calories,
+            improve stamina and stay healthy.
+        </p>
+
+        <p id="userEmail">
+            Loading account...
+        </p>
+
+        <button
+            class="hero-btn"
+            onclick="document.getElementById('aiCoach').scrollIntoView({behavior:'smooth'})">
+
+            🤖 Start AI Coach
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     6 FITNESS PHOTOS
+================================================= -->
+
+<section class="photo-gallery">
+
+    <div class="photo-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=85&w=700&auto=format&fit=crop"
+        alt="Gym workout">
+
+        <div class="photo-label">
+            🏋️ Strength
+        </div>
+
+    </div>
+
+
+    <div class="photo-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&w=700&auto=format&fit=crop"
+        alt="Fitness gym">
+
+        <div class="photo-label">
+            💪 Gym
+        </div>
+
+    </div>
+
+
+    <div class="photo-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=85&w=700&auto=format&fit=crop"
+        alt="Weight training">
+
+        <div class="photo-label">
+            🏋️ Weight Training
+        </div>
+
+    </div>
+
+
+    <div class="photo-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=85&w=700&auto=format&fit=crop"
+        alt="Crossfit">
+
+        <div class="photo-label">
+            🔥 Cardio
+        </div>
+
+    </div>
+
+
+    <div class="photo-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=85&w=700&auto=format&fit=crop"
+        alt="Yoga">
+
+        <div class="photo-label">
+            🧘 Yoga
+        </div>
+
+    </div>
+
+
+    <div class="photo-card">
+
+        <img
+        src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=85&w=700&auto=format&fit=crop"
+        alt="Cardio fitness">
+
+        <div class="photo-label">
+            🏃 Cardio
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     LIVE STATS
+================================================= -->
+
+<div class="stats">
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            👣
+        </div>
+
+        <h3>
+            Steps
+        </h3>
+
+        <div
+        class="stat-number"
+        id="stepsCount">
+            0
+        </div>
+
+        <p>
+            Goal: 6,000
+        </p>
+
+        <input
+        type="number"
+        id="stepsInput"
+        placeholder="Enter steps"
+        min="0">
+
+        <button
+        class="action-btn"
+        onclick="updateSteps()">
+
+            Update Steps
+
+        </button>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            💧
+        </div>
+
+        <h3>
+            Water
+        </h3>
+
+        <div
+        class="stat-number"
+        id="waterCount">
+            0 / 8
+        </div>
+
+        <p>
+            Glasses today
+        </p>
+
+        <button
+        class="action-btn"
+        onclick="addWater()">
+
+            + Drink Water
+
+        </button>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🔥
+        </div>
+
+        <h3>
+            Streak
+        </h3>
+
+        <div
+        class="stat-number"
+        id="streakCount">
+            0 Days
+        </div>
+
+        <p>
+            Keep going!
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ⭐
+        </div>
+
+        <h3>
+            Points
+        </h3>
+
+        <div
+        class="stat-number"
+        id="gamepoint">
+            0
+        </div>
+
+        <p>
+            Fitness Points
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     AI TIME BASED COACH
+================================================= -->
+
+<section
+class="section"
+id="aiCoach">
+
+    <div class="ai-box">
+
+        <h2>
+            🤖 FitCampus AI Coach
+        </h2>
+
+        <p>
+            Tell me how much time you have today.
+            I will create a workout according to your available time.
+        </p>
+
+        <label>
+            ⏱️ How many minutes do you have?
+        </label>
+
+        <input
+        type="number"
+        id="aiTime"
+        placeholder="Example: 10"
+        min="1">
+
+        <button
+        class="action-btn"
+        onclick="generateTimeWorkout()">
+
+            🤖 Generate My Workout
+
+        </button>
+
+        <div
+        id="aiWorkoutResult"
+        class="ai-answer">
+
+            👋 First tell me your available time.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     GOAL MANAGEMENT
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🎯 Goal Management
+    </h2>
+
+    <p>
+        Choose your main fitness goal.
+    </p>
+
+    <div class="goal-grid">
+
+
+        <div class="goal-card">
+
+            <h3>
+                ⚖️ Weight Management
+            </h3>
+
+            <p>
+                Track weight and progress.
+            </p>
+
+            <input
+            type="number"
+            id="currentWeight"
+            placeholder="Current weight kg">
+
+            <input
+            type="number"
+            id="targetWeight"
+            placeholder="Target weight kg">
+
+        </div>
+
+
+        <div class="goal-card">
+
+            <h3>
+                🏃 Stamina
+            </h3>
+
+            <p>
+                Improve endurance.
+            </p>
+
+            <input
+            type="number"
+            id="staminaGoal"
+            placeholder="Target minutes">
+
+        </div>
+
+
+        <div class="goal-card">
+
+            <h3>
+                💪 Strength
+            </h3>
+
+            <p>
+                Set your strength target.
+            </p>
+
+            <input
+            type="number"
+            id="strengthGoal"
+            placeholder="Target workout points">
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <button
+    class="action-btn"
+    onclick="saveGoals()">
+
+        💾 Save My Goals
+
+    </button>
+
+    <div
+    id="goalMessage"
+    class="ai-answer">
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     BMI CALCULATOR
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        ⚖️ BMI Fitness Indicator
+    </h2>
+
+    <p>
+        BMI = weight (kg) / height (m)²
+    </p>
+
+    <div class="two-column">
+
+        <div>
+
+            <input
+            type="number"
+            id="bmiWeight"
+            placeholder="Weight in kg">
+
+            <input
+            type="number"
+            id="bmiHeight"
+            placeholder="Height in cm">
+
+            <button
+            class="action-btn"
+            onclick="calculateBMI()">
+
+                Calculate BMI
+
+            </button>
+
+        </div>
+
+        <div
+        id="bmiResult"
+        class="bmi-result">
+
+            Enter your height and weight.
+
+        </div>
+
+    </div>
+
+    <p class="health-note">
+        ℹ️ BMI is only a general fitness indicator,
+        not a medical diagnosis.
+    </p>
+
+</section>
+
+
+<!-- =================================================
+     CALORIE BURN CALCULATOR
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🔥 Real Workout Calorie Calculator
+    </h2>
+
+    <p>
+        Estimate calories burned using body weight,
+        workout duration and exercise intensity.
+    </p>
+
+    <div class="two-column">
+
+        <div>
+
+            <label>
+                Body Weight (kg)
+            </label>
+
+            <input
+            type="number"
+            id="calWeight"
+            placeholder="Example: 60">
+
+            <label>
+                Workout Duration (minutes)
+            </label>
+
+            <input
+            type="number"
+            id="calMinutes"
+            placeholder="Example: 30">
+
+            <label>
+                Exercise
+            </label>
+
+            <select id="exerciseType">
+
+                <option value="3.5">
+                    Walking - Easy
+                </option>
+
+                <option value="5">
+                    Brisk Walking
+                </option>
+
+                <option value="7">
+                    Cycling
+                </option>
+
+                <option value="8">
+                    Jogging
+                </option>
+
+                <option value="8">
+                    Strength Training
+                </option>
+
+                <option value="10">
+                    Running
+                </option>
+
+                <option value="12">
+                    HIIT
+                </option>
+
+            </select>
+
+            <button
+            class="action-btn"
+            onclick="calculateCalories()">
+
+                🔥 Calculate Calories
+
+            </button>
+
+        </div>
+
+
+        <div
+        id="calorieResult"
+        class="calorie-result">
+
+            <p>
+                Estimated Calories Burned
+            </p>
+
+            <div class="calorie-number">
+                0 kcal
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     NUTRITION AI
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🍎 AI Food & Protein Recommendation
+    </h2>
+
+    <p>
+        Get a simple recommendation based on your fitness goal.
+    </p>
+
+    <div class="two-column">
+
+        <div>
+
+            <select id="foodGoal">
+
+                <option value="weight">
+                    Weight Management
+                </option>
+
+                <option value="stamina">
+                    Stamina
+                </option>
+
+                <option value="strength">
+                    Strength / Muscle
+                </option>
+
+            </select>
+
+            <button
+            class="action-btn"
+            onclick="foodRecommendation()">
+
+                🍎 Get Food Recommendation
+
+            </button>
+
+        </div>
+
+        <div
+        id="foodRecommendation"
+        class="ai-answer">
+
+            Select your goal.
+
+        </div>
+
+    </div>
+
+
+    <div class="food-grid">
+
+        <div class="food-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=85&w=700&auto=format&fit=crop"
+            alt="Healthy food">
+
+            <div class="food-content">
+
+                <h3>
+                    🥗 Balanced Food
+                </h3>
+
+                <p>
+                    Vegetables, fruits, whole grains
+                    and balanced meals.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?q=85&w=700&auto=format&fit=crop"
+            alt="Healthy meal">
+
+            <div class="food-content">
+
+                <h3>
+                    🍲 Healthy Meal
+                </h3>
+
+                <p>
+                    Prefer home-cooked meals,
+                    vegetables and quality protein.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="food-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?q=85&w=700&auto=format&fit=crop"
+            alt="Protein fitness">
+
+            <div class="food-content">
+
+                <h3>
+                    🥚 Protein Sources
+                </h3>
+
+                <p>
+                    Eggs, milk, curd, dal, paneer,
+                    soy, fish or lean meat.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="health-note">
+
+        ⚠️ Avoid making extreme diet changes.
+        Limit excessive sugary drinks, highly processed
+        foods and frequent deep-fried foods.
+        For medical conditions or a therapeutic diet,
+        consult a qualified professional.
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     PROGRESS ANALYTICS
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        📊 Progress Analytics
+    </h2>
+
+    <div class="chart-box">
+
+        <canvas
+        id="progressChart"
+        width="1000"
+        height="300">
+        </canvas>
+
+    </div>
+
+    <p>
+        📅 Daily • Weekly • Monthly activity overview
+    </p>
+
+</section>
+
+
+<!-- =================================================
+     GOAL COMPLETION
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        📈 Goal Completion
+    </h2>
+
+
+    <div class="progress-item">
+
+        <div class="progress-head">
+
+            <span>
+                👣 Steps
+            </span>
+
+            <strong id="stepsGoalPercent">
+                0%
+            </strong>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+            class="progress-fill"
+            id="stepsGoalBar">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-item">
+
+        <div class="progress-head">
+
+            <span>
+                💧 Water
+            </span>
+
+            <strong id="waterGoalPercent">
+                0%
+            </strong>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+            class="progress-fill"
+            id="waterGoalBar">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-item">
+
+        <div class="progress-head">
+
+            <span>
+                🔥 Activity
+            </span>
+
+            <strong id="activityGoalPercent">
+                0%
+            </strong>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+            class="progress-fill"
+            id="activityGoalBar">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     DAILY CHALLENGE
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🎯 Daily Challenge
+    </h2>
+
+    <p>
+        Complete a 15-minute walk today.
+    </p>
+
+    <button
+    id="challengeBtn"
+    class="action-btn"
+    onclick="completeChallenge()">
+
+        🚀 Complete Challenge
+
+    </button>
+
+    <div id="challengeStatus">
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     10 MINUTE WORKOUT TIMER
+================================================= -->
+
+<section class="section">
+
+    <div class="timer-box">
+
+        <h2>
+            ⏱️ 10-Minute Workout
+        </h2>
+
+        <p id="currentExercise">
+            🧘 Warm-up & Stretching
+        </p>
+
+        <div
+        class="timer"
+        id="timer">
+            10:00
+        </div>
+
+
+        <button onclick="startTimer()">
+            ▶ Start
+        </button>
+
+        <button onclick="pauseTimer()">
+            ⏸ Pause
+        </button>
+
+        <button onclick="resetTimer()">
+            🔄 Reset
+        </button>
+
+        <br>
+
+        <button
+        onclick="completeWorkout()"
+        style="background:#f39c12;color:white;">
+
+            ✅ Complete Workout +10
+
+        </button>
+
+
+        <p id="timerStatus">
+            Ready to workout 💪
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     SMART REMINDERS
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🔔 Smart Reminders
+    </h2>
+
+    <div class="reminder-grid">
+
+
+        <div class="reminder-card">
+
+            <h3>
+                💧 Water
+            </h3>
+
+            <p>
+                Reminder every 60 minutes.
+            </p>
+
+            <button
+            class="secondary-btn"
+            onclick="enableReminder('water')">
+
+                Enable
+
+            </button>
+
+        </div>
+
+
+        <div class="reminder-card">
+
+            <h3>
+                🏋️ Workout
+            </h3>
+
+            <p>
+                Remember your workout.
+            </p>
+
+            <button
+            class="secondary-btn"
+            onclick="enableReminder('workout')">
+
+                Enable
+
+            </button>
+
+        </div>
+
+
+        <div class="reminder-card">
+
+            <h3>
+                🚶 Inactive
+            </h3>
+
+            <p>
+                Move after sitting too long.
+            </p>
+
+            <button
+            class="secondary-btn"
+            onclick="enableReminder('inactive')">
+
+                Enable
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     GAMIFICATION
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🏆 Challenges & Rewards
+    </h2>
+
+    <div class="badges">
+
+
+        <div class="badge">
+
+            <div class="badge-icon">
+                🥉
+            </div>
+
+            <h3>
+                Beginner
+            </h3>
+
+            <p>
+                Start your journey
+            </p>
+
+        </div>
+
+
+        <div class="badge">
+
+            <div class="badge-icon">
+                🥈
+            </div>
+
+            <h3>
+                Active Student
+            </h3>
+
+            <p>
+                200+ points
+            </p>
+
+        </div>
+
+
+        <div class="badge">
+
+            <div class="badge-icon">
+                🥇
+            </div>
+
+            <h3>
+                Champion
+            </h3>
+
+            <p>
+                500+ points
+            </p>
+
+        </div>
+
+
+        <div class="badge">
+
+            <div class="badge-icon">
+                🔥
+            </div>
+
+            <h3>
+                Streak Master
+            </h3>
+
+            <p>
+                7-day activity
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     LEADERBOARD
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🏆 College Leaderboard
+    </h2>
+
+
+    <div style="padding:14px;background:#f6f8f7;border-radius:10px;">
+        🥇 sitesh
+        <strong style="float:right;">
+            850 pts
+        </strong>
+    </div>
+
+
+    <div style="padding:14px;background:#f6f8f7;border-radius:10px;margin-top:8px;">
+        🥈 satya
+        <strong style="float:right;">
+            720 pts
+        </strong>
+    </div>
+
+
+    <div style="padding:14px;background:#f6f8f7;border-radius:10px;margin-top:8px;">
+        🥉 sanjana
+        <strong style="float:right;">
+            650 pts
+        </strong>
+    </div>
+
+
+    <div style="padding:14px;background:#e8f8ef;border:2px solid #16834b;border-radius:10px;margin-top:8px;">
+        ⭐ You
+        <strong
+        id="leaderboardPoints"
+        style="float:right;">
+            0 pts
+        </strong>
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     SECURITY
+================================================= -->
+
+<section class="section">
+
+    <h2>
+        🔐 Security & Privacy
+    </h2>
+
+    <ul>
+
+        <li>
+            Firebase Authentication manages user passwords securely.
+        </li>
+
+        <li>
+            Passwords should never be stored in Firestore.
+        </li>
+
+        <li>
+            Dashboard access requires authentication.
+        </li>
+
+        <li>
+            User fitness data is stored against the authenticated UID.
+        </li>
+
+        <li>
+            Form inputs are validated before calculations.
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- =================================================
+     MOTIVATION
+================================================= -->
+
+<section class="section"
+style="text-align:center;background:linear-gradient(135deg,#e8f8ef,#fff);">
+
+    <h2>
+        💪 Today's Motivation
+    </h2>
+
+    <h3>
+        “Small steps every day create big results.”
+    </h3>
+
+    <p>
+        🚀 Stay Active • Stay Healthy • Stay Strong
+    </p>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    <p style="text-align:center;padding:25px;background:#10251b;color:white;">
+        © 2026 FitCampus AI |
+        Smart Student Fitness Platform 💚
+    </p>
+
+</footer>
+
+
+<!-- =================================================
+     YOUR EXISTING FIREBASE SCRIPT
+================================================= -->
+
+<script type="module" src="script.js"></script>
+
+
+<!-- =================================================
+     NEW DASHBOARD FEATURES
+================================================= -->
+
+<script>
+
+/* =====================================================
+   AI TIME BASED WORKOUT
+===================================================== */
+
+function generateTimeWorkout(){
+
+    const time =
+        Number(
+            document.getElementById("aiTime").value
+        );
+
+    const result =
+        document.getElementById("aiWorkoutResult");
+
+    if(!time || time <= 0){
+
+        result.innerHTML =
+        "⚠️ Please enter your available time.";
+
+        return;
+    }
+
+
+    let plan = "";
+
+    if(time <= 5){
+
+        plan = `
+        <h3>⚡ ${time}-Minute Quick Workout</h3>
+
+        🧘 1 min Stretching<br>
+        🏃 2 min Fast Movement<br>
+        😌 1 min Cool Down<br>
+
+        <br>
+        ⭐ Perfect for a busy study break.
+        `;
+
+    }
+
+    else if(time <= 10){
+
+        plan = `
+        <h3>🔥 10-Minute Student Workout</h3>
+
+        🧘 2 min Warm-up<br>
+        🏃 3 min Jumping Jacks<br>
+        💪 3 min Squats + Lunges<br>
+        😌 2 min Cool Down
+
+        <br><br>
+
+        💧 Drink water after workout.
+        `;
+
+    }
+
+    else if(time <= 20){
+
+        plan = `
+        <h3>💪 20-Minute Fitness Plan</h3>
+
+        🧘 4 min Warm-up<br>
+        🏃 5 min Cardio<br>
+        💪 5 min Strength<br>
+        🚶 3 min Walking<br>
+        😌 3 min Cool Down
+        `;
+
+    }
+
+    else{
+
+        plan = `
+        <h3>🏆 ${time}-Minute Full Workout</h3>
+
+        🧘 5 min Warm-up<br>
+        🏃 10 min Cardio<br>
+        💪 10 min Strength<br>
+        🚶 5 min Walking<br>
+        😌 5 min Cool Down
+
+        <br><br>
+
+        💧 Stay hydrated and take short breaks.
+        `;
+
+    }
+
+
+    result.innerHTML = plan;
+
+}
+
+
+/* =====================================================
+   BMI
+===================================================== */
+
+function calculateBMI(){
+
+    const weight =
+        Number(
+            document.getElementById("bmiWeight").value
+        );
+
+    const heightCm =
+        Number(
+            document.getElementById("bmiHeight").value
+        );
+
+    const result =
+        document.getElementById("bmiResult");
+
+
+    if(weight <= 0 || heightCm <= 0){
+
+        result.innerHTML =
+        "⚠️ Enter valid height and weight.";
+
+        return;
+    }
+
+
+    const height =
+        heightCm / 100;
+
+
+    const bmi =
+        weight / (height * height);
+
+
+    let category = "";
+
+
+    if(bmi < 18.5){
+
+        category = "Below typical adult BMI range";
+
+    }
+
+    else if(bmi < 25){
+
+        category = "Typical adult BMI range";
+
+    }
+
+    else if(bmi < 30){
+
+        category = "Above typical adult BMI range";
+
+    }
+
+    else{
+
+        category = "Higher BMI range";
+
+    }
+
+
+    result.innerHTML = `
+
+        <h3>
+            BMI: ${bmi.toFixed(1)}
+        </h3>
+
+        <p>
+            ${category}
+        </p>
+
+        <small>
+            General fitness indicator only,
+            not a medical diagnosis.
+        </small>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CALORIES
+   MET formula:
+   Calories/min = MET × 3.5 × weight / 200
+===================================================== */
+
+function calculateCalories(){
+
+    const weight =
+        Number(
+            document.getElementById("calWeight").value
+        );
+
+    const minutes =
+        Number(
+            document.getElementById("calMinutes").value
+        );
+
+    const met =
+        Number(
+            document.getElementById("exerciseType").value
+        );
+
+
+    const result =
+        document.getElementById("calorieResult");
+
+
+    if(weight <= 0 || minutes <= 0){
+
+        result.innerHTML = `
+            ⚠️ Enter valid weight and workout time.
+        `;
+
+        return;
+    }
+
+
+    const calories =
+        met * 3.5 * weight / 200 * minutes;
+
+
+    result.innerHTML = `
+
+        <p>
+            Estimated Calories Burned
+        </p>
+
+        <div class="calorie-number">
+            ${Math.round(calories)} kcal
+        </div>
+
+        <p>
+            ${minutes} minutes workout
+        </p>
+
+    `;
+
+}
+
+
+/* =====================================================
+   FOOD RECOMMENDATION
+===================================================== */
+
+function foodRecommendation(){
+
+    const goal =
+        document.getElementById("foodGoal").value;
+
+    const result =
+        document.getElementById(
+            "foodRecommendation"
+        );
+
+
+    if(goal === "weight"){
+
+        result.innerHTML = `
+
+        <h3>⚖️ Weight Management</h3>
+
+        <b>Prefer:</b><br>
+
+        🥗 Vegetables<br>
+        🍎 Fruits<br>
+        🫘 Dal / beans<br>
+        🥚 Eggs<br>
+        🥛 Curd<br>
+        🌾 Whole grains<br>
+
+        <br>
+
+        <b>Limit:</b><br>
+
+        🥤 Sugary drinks<br>
+        🍟 Frequent deep-fried foods<br>
+        🍰 Excess sweets<br>
+
+        `;
+
+    }
+
+
+    else if(goal === "stamina"){
+
+        result.innerHTML = `
+
+        <h3>🏃 Stamina Goal</h3>
+
+        🍌 Banana<br>
+        🍚 Rice / whole grains<br>
+        🥔 Potatoes<br>
+        🥛 Milk / curd<br>
+        🥚 Eggs<br>
+        🫘 Dal<br>
+        🥗 Vegetables<br>
+
+        <br>
+
+        💧 Hydration is important.
+
+        `;
+
+    }
+
+
+    else{
+
+        result.innerHTML = `
+
+        <h3>💪 Strength / Muscle</h3>
+
+        🥚 Eggs<br>
+        🥛 Milk<br>
+        🧀 Paneer<br>
+        🫘 Dal<br>
+        🌱 Soy / tofu<br>
+        🐟 Fish<br>
+        🍗 Lean chicken<br>
+        🥜 Nuts / peanuts<br>
+
+        <br>
+
+        ⭐ Include protein across your meals.
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   GOALS
+===================================================== */
+
+function saveGoals(){
+
+    const current =
+        Number(
+            document.getElementById("currentWeight").value
+        );
+
+    const target =
+        Number(
+            document.getElementById("targetWeight").value
+        );
+
+    const stamina =
+        Number(
+            document.getElementById("staminaGoal").value
+        );
+
+    const strength =
+        Number(
+            document.getElementById("strengthGoal").value
+        );
+
+
+    localStorage.setItem(
+        "fitcampusGoals",
+        JSON.stringify({
+            current,
+            target,
+            stamina,
+            strength
+        })
+    );
+
+
+    document.getElementById(
+        "goalMessage"
+    ).innerHTML = `
+
+        ✅ Goals saved successfully!
+
+        <br><br>
+
+        🎯 Keep working toward your target.
+
+    `;
+
+}
+
+
+/* =====================================================
+   GOAL COMPLETION
+===================================================== */
+
+function updateGoalBars(){
+
+    const steps =
+        Number(
+            document.getElementById("stepsCount")?.innerText || 0
+        );
+
+    const waterText =
+        document.getElementById("waterCount")?.innerText || "0";
+
+    const water =
+        Number(
+            waterText.split("/")[0]
+        );
+
+
+    const stepsPercent =
+        Math.min(
+            Math.round(
+                (steps / 6000) * 100
+            ),
+            100
+        );
+
+
+    const waterPercent =
+        Math.min(
+            Math.round(
+                (water / 8) * 100
+            ),
+            100
+        );
+
+
+    const activityPercent =
+        Math.min(
+            Math.round(
+                (steps / 6000) * 100
+            ),
+            100
+        );
+
+
+    setGoal(
+        "stepsGoalPercent",
+        "stepsGoalBar",
+        stepsPercent
+    );
+
+
+    setGoal(
+        "waterGoalPercent",
+        "waterGoalBar",
+        waterPercent
+    );
+
+
+    setGoal(
+        "activityGoalPercent",
+        "activityGoalBar",
+        activityPercent
+    );
+
+}
+
+
+function setGoal(textId,barId,value){
+
+    const text =
+        document.getElementById(textId);
+
+    const bar =
+        document.getElementById(barId);
+
+
+    if(text)
+        text.innerText =
+        value + "%";
+
+
+    if(bar)
+        bar.style.width =
+        value + "%";
+
+}
+
+
+setInterval(
+    updateGoalBars,
+    1000
+);
+
+
+/* =====================================================
+   10 MINUTE TIMER
+===================================================== */
+
+let workoutSeconds = 600;
+
+let workoutInterval = null;
+
+
+function updateTenMinuteTimer(){
+
+    const timer =
+        document.getElementById("timer");
+
+    if(!timer)
+        return;
+
+
+    const minutes =
+        Math.floor(
+            workoutSeconds / 60
+        );
+
+    const seconds =
+        workoutSeconds % 60;
+
+
+    timer.innerText =
+        String(minutes).padStart(2,"0")
+        + ":" +
+        String(seconds).padStart(2,"0");
+
+
+    if(workoutSeconds <= 0){
+
+        clearInterval(
+            workoutInterval
+        );
+
+        workoutInterval = null;
+
+        document.getElementById(
+            "timerStatus"
+        ).innerText =
+        "🎉 10-minute workout completed!";
+
+    }
+
+}
+
+
+function startTenMinuteTimer(){
+
+    if(workoutInterval)
+        return;
+
+
+    document.getElementById(
+        "timerStatus"
+    ).innerText =
+    "🔥 Workout running...";
+
+
+    workoutInterval =
+    setInterval(function(){
+
+        workoutSeconds--;
+
+        updateTenMinuteTimer();
+
+
+        if(workoutSeconds <= 0){
+
+            clearInterval(
+                workoutInterval
+            );
+
+            workoutInterval = null;
+
+        }
+
+    },1000);
+
+}
+
+
+function pauseTenMinuteTimer(){
+
+    clearInterval(
+        workoutInterval
+    );
+
+    workoutInterval = null;
+
+    document.getElementById(
+        "timerStatus"
+    ).innerText =
+    "⏸ Workout paused";
+
+}
+
+
+function resetTenMinuteTimer(){
+
+    clearInterval(
+        workoutInterval
+    );
+
+    workoutInterval = null;
+
+    workoutSeconds = 600;
+
+    updateTenMinuteTimer();
+
+    document.getElementById(
+        "timerStatus"
+    ).innerText =
+    "Ready to workout 💪";
+
+}
+
+
+/*
+   Override existing timer buttons
+*/
+
+window.startTimer =
+startTenMinuteTimer;
+
+window.pauseTimer =
+pauseTenMinuteTimer;
+
+window.resetTimer =
+resetTenMinuteTimer;
+
+
+updateTenMinuteTimer();
+
+
+/* =====================================================
+   PROGRESS CHART
+===================================================== */
+
+function drawProgressChart(){
+
+    const canvas =
+        document.getElementById(
+            "progressChart"
+        );
+
+    if(!canvas)
+        return;
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const width =
+        canvas.width;
+
+    const height =
+        canvas.height;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    const values = [
+        25,
+        42,
+        35,
+        60,
+        48,
+        72,
+        85
+    ];
+
+
+    const labels = [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+    ];
+
+
+    ctx.strokeStyle =
+        "#16834b";
+
+    ctx.lineWidth = 5;
+
+    ctx.beginPath();
+
+
+    values.forEach(
+        function(value,index){
+
+            const x =
+                60 +
+                index *
+                ((width-100) /
+                (values.length-1));
+
+            const y =
+                height -
+                40 -
+                (value *
+                (height-80) /
+                100);
+
+
+            if(index === 0)
+                ctx.moveTo(x,y);
+            else
+                ctx.lineTo(x,y);
+
+        }
+    );
+
+
+    ctx.stroke();
+
+
+    values.forEach(
+        function(value,index){
+
+            const x =
+                60 +
+                index *
+                ((width-100) /
+                (values.length-1));
+
+            const y =
+                height -
+                40 -
+                (value *
+                (height-80) /
+                100);
+
+
+            ctx.fillStyle =
+                "#16834b";
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                7,
+                0,
+                Math.PI*2
+            );
+
+            ctx.fill();
+
+
+            ctx.fillStyle =
+                "#333";
+
+            ctx.font =
+                "16px Arial";
+
+            ctx.fillText(
+                labels[index],
+                x-15,
+                height-12
+            );
+
+        }
+    );
+
+}
+
+
+drawProgressChart();
+
+
+/* =====================================================
+   SMART REMINDERS
+===================================================== */
+
+function enableReminder(type){
+
+    if(
+        !("Notification" in window)
+    ){
+
+        alert(
+            "Your browser does not support notifications."
+        );
+
+        return;
+    }
+
+
+    Notification.requestPermission()
+    .then(function(permission){
+
+        if(permission === "granted"){
+
+            alert(
+                "🔔 " +
+                type +
+                " reminder enabled!"
+            );
+
+        }
+
+        else{
+
+            alert(
+                "Please allow notifications in browser settings."
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   LOAD SAVED GOALS
+===================================================== */
+
+function loadGoals(){
+
+    const saved =
+        localStorage.getItem(
+            "fitcampusGoals"
+        );
+
+
+    if(!saved)
+        return;
+
+
+    try{
+
+        const data =
+            JSON.parse(saved);
+
+
+        if(data.current)
+            document.getElementById(
+                "currentWeight"
+            ).value =
+            data.current;
+
+
+        if(data.target)
+            document.getElementById(
+                "targetWeight"
+            ).value =
+            data.target;
+
+
+        if(data.stamina)
+            document.getElementById(
+                "staminaGoal"
+            ).value =
+            data.stamina;
+
+
+        if(data.strength)
+            document.getElementById(
+                "strengthGoal"
+            ).value =
+            data.strength;
+
+    }
+    catch(error){
+
+        console.log(
+            "Goal data error",
+            error
+        );
+
+    }
+
+}
+
+
+loadGoals();
+
+
+</script>
+
+
+</body>
+</html>

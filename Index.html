@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitCampus AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">FitCampus AI</div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="login.html">
+                <button>Login</button>
+            </a>
+        </div>
+    </nav>
+
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Stay Active.<br>
+                Stay Healthy.
+            </h1>
+
+            <p>
+                AI-powered fitness platform for college students.
+            </p>
+
+            <a href="login.html">
+                <button class="start-btn">
+                    Get Started
+                </button>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section id="features">
+
+        <h2>Our Features</h2>
+
+        <div class="feature-container">
+
+            <div class="feature-card">
+                <h3>👣 Activity Tracking</h3>
+                <p>Track your daily steps and activities.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🤖 AI Recommendation</h3>
+                <p>Get personalized fitness suggestions.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎯 Daily Challenges</h3>
+                <p>Complete challenges and earn points.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🏆 Leaderboard</h3>
+                <p>Compete with other students.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="about">
+
+        <h2>About FitCampus AI</h2>
+
+        <p>
+            FitCampus AI helps college students stay active,
+            healthy and motivated while studying.
+        </p>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 FitCampus AI | Stay Active. Stay Healthy.
+        </p>
+
+    </footer>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyT1YJI16_H_LfxFHk0NT5Sj9dvRliebQ",
+    authDomain: "fitcampus-ai-32e5d.firebaseapp.com",
+    projectId: "fitcampus-ai-32e5d",
+    storageBucket: "fitcampus-ai-32e5d.firebasestorage.app",
+    messagingSenderId: "116058395606",
+    appId: "1:116058395606:web:a88bd985efb717fb358a77",
+    measurementId: "G-SY4BNGKVHF"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+</body>
+
+</html>

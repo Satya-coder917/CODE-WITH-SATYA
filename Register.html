@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - FitCampus AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <h1>FitCampus AI</h1>
+
+        <h2>Create Account 🚀</h2>
+
+        <p>Start your fitness journey today.</p>
+
+        <form id="registerForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Create password"
+                minlength="6"
+                required
+            >
+
+            <button type="submit">
+                🚀 Register
+            </button>
+
+        </form>
+
+        <p class="register-text">
+            Already have an account?
+            <a href="Login.html">Login</a>
+        </p>
+
+        <a href="index.html">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyDyT1YJI16_H_LfxFHk0NT5Sj9dvRliebQ",
+
+    authDomain:
+        "fitcampus-ai-32e5d.firebaseapp.com",
+
+    projectId:
+        "fitcampus-ai-32e5d",
+
+    storageBucket:
+        "fitcampus-ai-32e5d.firebasestorage.app",
+
+    messagingSenderId:
+        "116058395606",
+
+    appId:
+        "1:116058395606:web:a88d985efb717fb358a77"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+document
+    .getElementById("registerForm")
+    .addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        const name =
+            document
+                .getElementById("name")
+                .value
+                .trim();
+
+        const email =
+            document
+                .getElementById("registerEmail")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("registerPassword")
+                .value;
+
+
+        if (password.length < 6) {
+
+            alert(
+                "❌ Password must contain at least 6 characters."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            await updateProfile(
+                user,
+                {
+                    displayName: name
+                }
+            );
+
+
+            // Save user profile + initial fitness data
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                ),
+                {
+
+                    name: name,
+
+                    email: email,
+
+                    uid: user.uid,
+
+                    steps: 0,
+
+                    water: 0,
+
+                    points: 0,
+
+                    streak: 0,
+
+                    challenges: 0,
+
+                    badges: 0,
+
+                    createdAt: new Date(),
+
+                    updatedAt: new Date()
+
+                }
+            );
+
+
+            alert(
+                "🎉 Registration Successful!"
+            );
+
+
+            window.location.href =
+                "dashboard.html";
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            let message =
+                "Registration failed.";
+
+
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                message =
+                    "❌ This email is already registered.";
+
+            } else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "❌ Please enter a valid email.";
+
+            } else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                message =
+                    "❌ Password is too weak.";
+
+            } else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                message =
+                    "❌ Firestore permission denied. Check Firebase Rules.";
+
+            }
+
+
+            alert(message);
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
